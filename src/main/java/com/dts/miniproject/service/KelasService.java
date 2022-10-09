@@ -9,7 +9,10 @@ import org.springframework.web.server.ResponseStatusException;
 import com.dts.miniproject.model.Kelas;
 import com.dts.miniproject.repository.KelasRepository;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class KelasService {
     private KelasRepository kelasRepository;
 

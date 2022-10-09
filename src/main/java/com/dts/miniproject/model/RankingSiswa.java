@@ -23,9 +23,9 @@ public class RankingSiswa {
 
     private int rapot;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    private Siswa siswa;
+    // @OneToOne
+    // @MapsId
+    // @JoinColumn(name = "id")
+    // private Siswa siswa;
 
 }

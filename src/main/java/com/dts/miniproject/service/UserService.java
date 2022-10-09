@@ -87,4 +87,15 @@ public class UserService {
         return repository.save(user);
     }
 
+    public User updateRole(AddRoleUserRequest addRoleUserRequest) {
+        User user = getById(addRoleUserRequest.getUserId());
+        List<Role> roles = user.getRoles();
+        roles.clear();
+        addRoleUserRequest.getRoles().forEach(role -> {
+            roles.add(roleService.findByName(role));
+        });
+        user.setRoles(roles);
+        return repository.save(user);
+    }
+
 }

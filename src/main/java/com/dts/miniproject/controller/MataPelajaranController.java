@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dts.miniproject.model.MataPelajaran;
+import com.dts.miniproject.model.dto.request.AddEntitasToMatpel;
 import com.dts.miniproject.service.MataPelajaranService;
 
 import lombok.AllArgsConstructor;
@@ -38,6 +39,19 @@ public class MataPelajaranController {
     @PostMapping
     public ResponseEntity<MataPelajaran> create(@RequestBody MataPelajaran matapelajaran) {
         return new ResponseEntity<MataPelajaran>(matapelajaranService.create(matapelajaran), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/entitas")
+    public ResponseEntity<MataPelajaran> addEntitasToMatpel(@RequestBody AddEntitasToMatpel addeEntitasToMatpel) {
+        return new ResponseEntity<MataPelajaran>(matapelajaranService.addEntitasToMatpel(addeEntitasToMatpel),
+                HttpStatus.CREATED);
+    }
+
+    @PutMapping("/entitas/{id}")
+    public ResponseEntity<MataPelajaran> updateEntitasToMatpel(@PathVariable Long id,
+            @RequestBody AddEntitasToMatpel addeEntitasToMatpel) {
+        return new ResponseEntity<MataPelajaran>(matapelajaranService.updateEntitasToMatpel(id, addeEntitasToMatpel),
+                HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

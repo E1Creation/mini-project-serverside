@@ -33,12 +33,10 @@ public class Rapot {
     @JoinColumn(name = "mataPelajarans")
     private MataPelajaran mataPelajarans;
 
-    @ManyToOne
-    @JoinColumn(name = "siswa")
-    private Siswa siswa;
+    // @ManyToOne
+    // @JoinColumn(name = "siswa")
+    // private Siswa siswa;
 
-    @ManyToOne
-    @JoinColumn(name = "semesteran")
-    private Semesteran semesteran;
+    private int semester;
 
 }

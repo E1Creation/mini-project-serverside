@@ -2,6 +2,7 @@ package com.dts.miniproject.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,15 +39,13 @@ public class Entitas {
     @Column(name = "no_hp")
     private String noHp;
 
+    @JsonProperty(access = Access.WRITE_ONLY)
     @ManyToMany
     @JoinTable(name = "entitas_matapelajaran", joinColumns = @JoinColumn(name = "entitas_id"), inverseJoinColumns = @JoinColumn(name = "matpel_id"))
     List<MataPelajaran> mataPelajarans;
 
-    @OneToOne(mappedBy = "entitas")
+    @OneToOne(mappedBy = "entitas", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private User user;
-
-    @OneToMany(mappedBy = "entitas")
-    private List<JadwalPelajaran> jadwalPelajarans;
 
 }

@@ -19,32 +19,32 @@ import com.dts.miniproject.service.JadwalPelajaranService;
 @RestController
 @RequestMapping("/jadwalpelajaran")
 public class JadwalPelajaranController {
-    private JadwalPelajaranService JadwalPelajaranService;
+    private JadwalPelajaranService jadwalPelajaranService;
 
     @GetMapping
     public ResponseEntity<List<JadwalPelajaran>> getAll() {
-        return new ResponseEntity<List<JadwalPelajaran>>(JadwalPelajaranService.getAll(), HttpStatus.OK);
+        return new ResponseEntity<List<JadwalPelajaran>>(jadwalPelajaranService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<JadwalPelajaran> getById(@PathVariable Long id) {
-        return new ResponseEntity<JadwalPelajaran>(JadwalPelajaranService.getById(id), HttpStatus.OK);
+        return new ResponseEntity<JadwalPelajaran>(jadwalPelajaranService.getById(id), HttpStatus.OK);
 
     }
 
     @PostMapping
     public ResponseEntity<JadwalPelajaran> create(@RequestBody JadwalPelajaran JadwalPelajaran) {
-        return new ResponseEntity<JadwalPelajaran>(JadwalPelajaranService.create(JadwalPelajaran), HttpStatus.CREATED);
+        return new ResponseEntity<JadwalPelajaran>(jadwalPelajaranService.create(JadwalPelajaran), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<JadwalPelajaran> update(@PathVariable Long id, @RequestBody JadwalPelajaran JadwalPelajaran) {
-        return new ResponseEntity<JadwalPelajaran>(JadwalPelajaranService.update(id, JadwalPelajaran),
+        return new ResponseEntity<JadwalPelajaran>(jadwalPelajaranService.update(id, JadwalPelajaran),
                 HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<JadwalPelajaran> delete(@PathVariable Long id) {
-        return new ResponseEntity<JadwalPelajaran>(JadwalPelajaranService.delete(id), HttpStatus.OK);
+        return new ResponseEntity<JadwalPelajaran>(jadwalPelajaranService.delete(id), HttpStatus.OK);
     }
 }

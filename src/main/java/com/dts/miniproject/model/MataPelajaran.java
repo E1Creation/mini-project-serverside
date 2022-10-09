@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,15 +27,15 @@ public class MataPelajaran {
     private Long id;
     private String nama;
 
-    @ManyToMany(mappedBy = "mataPelajarans")
-    private List<Guru> gurus;
+    // @ManyToMany(mappedBy = "mataPelajarans")
+    // private List<Guru> gurus;
 
-    @ManyToMany(mappedBy = "mataPelajarans")
-    private List<Siswa> siswas;
-
+    // @ManyToMany(mappedBy = "mataPelajarans")
+    // private List<Siswa> siswas;
     @ManyToMany(mappedBy = "mataPelajarans")
     private List<Entitas> entitas;
 
+    @JsonProperty(access = Access.WRITE_ONLY)
     @OneToMany(mappedBy = "mataPelajarans")
     private List<JadwalPelajaran> jadwalPelajaran;
 

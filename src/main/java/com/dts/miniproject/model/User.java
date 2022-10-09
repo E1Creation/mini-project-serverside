@@ -12,6 +12,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,16 +34,16 @@ public class User {
     @Column(name = "is_enabled")
     private Boolean isEnabled;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    private Guru guru;
+    // @OneToOne
+    // @MapsId
+    // @JoinColumn(name = "id")
+    // private Guru guru;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    private Siswa siswa;
-
+    // @OneToOne
+    // @MapsId
+    // @JoinColumn(name = "id")
+    // private Siswa siswa;
+    @JsonProperty(access = Access.WRITE_ONLY)
     @OneToOne
     @MapsId
     @JoinColumn(name = "id")

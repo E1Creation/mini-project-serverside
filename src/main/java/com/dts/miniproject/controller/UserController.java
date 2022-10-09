@@ -40,6 +40,11 @@ public class UserController {
         return new ResponseEntity(service.addRole(addRoleUserRequest), HttpStatus.CREATED);
     }
 
+    @PostMapping("/updaterole")
+    public ResponseEntity<AddRoleUserRequest> updateRole(@RequestBody AddRoleUserRequest addRoleUserRequest) {
+        return new ResponseEntity(service.updateRole(addRoleUserRequest), HttpStatus.CREATED);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
         return new ResponseEntity<>(service.update(id, user), HttpStatus.CREATED);
