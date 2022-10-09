@@ -29,9 +29,9 @@ public class Rapot {
     private Long id;
     private int nilai;
 
-    @ManyToMany
-    @JoinTable(name = "rapot_mataPelajaran", joinColumns = @JoinColumn(name = "rapot_id"), inverseJoinColumns = @JoinColumn(name = "matpel_id"))
-    private List<MataPelajaran> mataPelajarans;
+    @ManyToOne
+    @JoinColumn(name = "mataPelajarans")
+    private MataPelajaran mataPelajarans;
 
     @ManyToOne
     @JoinColumn(name = "siswa")

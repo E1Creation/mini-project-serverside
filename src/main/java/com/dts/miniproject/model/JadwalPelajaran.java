@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -31,12 +29,15 @@ public class JadwalPelajaran {
     @Column(name = "jam_keluar")
     private int jamKeluar;
 
-    @ManyToMany
-    @JoinTable(name = "jadwal_MataPelajaran", joinColumns = @JoinColumn(name = "jadwal_id"), inverseJoinColumns = @JoinColumn(name = "matpel_id"))
-    private List<MataPelajaran> mataPelajarans;
+    @ManyToOne
+    @JoinColumn(name = "mataPelajarans")
+    private MataPelajaran mataPelajarans;
 
     @ManyToOne
     @JoinColumn(name = "kelas")
     private Kelas kelas;
 
+    @ManyToOne
+    @JoinColumn(name = "entitas")
+    private Entitas entitas;
 }

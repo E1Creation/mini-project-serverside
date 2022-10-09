@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +22,7 @@ public class MataPelajaran {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String nama;
 
     @ManyToMany(mappedBy = "mataPelajarans")
     private List<Guru> gurus;
@@ -31,8 +31,11 @@ public class MataPelajaran {
     private List<Siswa> siswas;
 
     @ManyToMany(mappedBy = "mataPelajarans")
+    private List<Entitas> entitas;
+
+    @OneToMany(mappedBy = "mataPelajarans")
     private List<JadwalPelajaran> jadwalPelajaran;
 
-    @ManyToMany(mappedBy = "mataPelajarans")
+    @OneToMany(mappedBy = "mataPelajarans")
     private List<Rapot> rapots;
 }

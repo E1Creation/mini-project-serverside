@@ -1,10 +1,14 @@
 package com.dts.miniproject.model;
 
+import java.util.List;
+
 import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
@@ -36,4 +40,13 @@ public class User {
     @MapsId
     @JoinColumn(name = "id")
     private Siswa siswa;
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "id")
+    private Entitas entitas;
+
+    @ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    List<Role> roles;
 }
