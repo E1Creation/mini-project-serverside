@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dts.miniproject.model.Kelas;
 import com.dts.miniproject.service.KelasService;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @RestController
 @RequestMapping("/kelas")
 public class KelasController {

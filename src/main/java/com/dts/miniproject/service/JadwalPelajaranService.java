@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.dts.miniproject.model.JadwalPelajaran;
+import com.dts.miniproject.model.Kelas;
+import com.dts.miniproject.model.MataPelajaran;
+import com.dts.miniproject.model.dto.request.AddKelasMatpelToJadwal;
 import com.dts.miniproject.repository.JadwalPelajaranRepository;
 
 import lombok.AllArgsConstructor;
@@ -15,6 +18,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class JadwalPelajaranService {
     private JadwalPelajaranRepository repository;
+    private KelasService kelasService;
+    private MataPelajaranService mataPelajaranService;
 
     public List<JadwalPelajaran> getAll() {
         return repository.findAll();
@@ -48,4 +53,13 @@ public class JadwalPelajaranService {
         return JadwalPelajaran;
     }
 
+    public JadwalPelajaran addKelasMatpelToJadwal(JadwalPelajaran jadwalPelajaran) {
+        Kelas kelas = kelasService.getById(jadwalPelajaran.getKelas().getId());
+        MataPelajaran mataPelajaran = mataPelajaranService.getById(jadwalPelajaran.getMataPelajarans().getId());
+        jadwalPelajaran.setKelas(kelas);
+        jadwalPelajaran.setMataPelajarans(mataPelajaran);
+
+        return repository.save(jadwalPelajaran);
+
+    }
 }

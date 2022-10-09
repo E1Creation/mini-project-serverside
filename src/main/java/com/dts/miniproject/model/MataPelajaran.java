@@ -32,6 +32,7 @@ public class MataPelajaran {
 
     // @ManyToMany(mappedBy = "mataPelajarans")
     // private List<Siswa> siswas;
+
     @ManyToMany(mappedBy = "mataPelajarans")
     private List<Entitas> entitas;
 

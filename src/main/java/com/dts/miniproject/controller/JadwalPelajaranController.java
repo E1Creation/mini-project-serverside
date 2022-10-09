@@ -14,12 +14,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dts.miniproject.model.JadwalPelajaran;
+import com.dts.miniproject.model.Kelas;
+import com.dts.miniproject.model.MataPelajaran;
+import com.dts.miniproject.model.dto.mapper.Mapper;
+import com.dts.miniproject.model.dto.request.AddKelasMatpelToJadwal;
 import com.dts.miniproject.service.JadwalPelajaranService;
+import com.dts.miniproject.service.KelasService;
+import com.dts.miniproject.service.MataPelajaranService;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @RestController
 @RequestMapping("/jadwalpelajaran")
 public class JadwalPelajaranController {
     private JadwalPelajaranService jadwalPelajaranService;
+    private KelasService kelasService;
+    private MataPelajaranService mataPelajaranService;
 
     @GetMapping
     public ResponseEntity<List<JadwalPelajaran>> getAll() {
@@ -35,6 +46,19 @@ public class JadwalPelajaranController {
     @PostMapping
     public ResponseEntity<JadwalPelajaran> create(@RequestBody JadwalPelajaran JadwalPelajaran) {
         return new ResponseEntity<JadwalPelajaran>(jadwalPelajaranService.create(JadwalPelajaran), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/kelasmatpel")
+    public ResponseEntity<JadwalPelajaran> createDTO(@RequestBody AddKelasMatpelToJadwal addKelasMatpelToJadwal) {
+        Kelas kelas = kelasService.getById(addKelasMatpelToJadwal.getIdKelas());
+        MataPelajaran mataPelajaran = mataPelajaranService.getById(addKelasMatpelToJadwal.getIdMatpel());
+        JadwalPelajaran jadwalPelajaran = Mapper.toJadwalPelajaran(addKelasMatpelToJadwal);
+        jadwalPelajaran.setKelas(kelas);
+        jadwalPelajaran.setMataPelajarans(mataPelajaran);
+
+        return new ResponseEntity<JadwalPelajaran>(
+                jadwalPelajaranService.addKelasMatpelToJadwal(jadwalPelajaran),
+                HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

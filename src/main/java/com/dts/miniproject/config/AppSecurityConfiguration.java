@@ -39,6 +39,8 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/matapelajaran/**").hasRole("GURU")
+                .antMatchers("/kelas/**").hasRole("SISWA")
                 .anyRequest().permitAll()
                 .and()
                 .httpBasic();

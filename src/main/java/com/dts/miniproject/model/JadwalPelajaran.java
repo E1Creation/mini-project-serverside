@@ -37,6 +37,7 @@ public class JadwalPelajaran {
     @JoinColumn(name = "mataPelajarans")
     private MataPelajaran mataPelajarans;
 
+    @JsonProperty(access = Access.WRITE_ONLY)
     @ManyToOne
     @JoinColumn(name = "kelas")
     private Kelas kelas;
