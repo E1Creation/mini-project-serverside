@@ -6,7 +6,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.dts.miniproject.model.Entitas;
+import com.dts.miniproject.model.MataPelajaran;
 import com.dts.miniproject.model.Rapot;
+import com.dts.miniproject.model.dto.mapper.Mapper;
+import com.dts.miniproject.model.dto.response.EntitasRapot;
 import com.dts.miniproject.repository.RapotRepository;
 
 import lombok.AllArgsConstructor;
@@ -15,6 +19,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class RapotService {
     private RapotRepository rapotRepository;
+    private MataPelajaranService mataPelajaranService;
+    private EntitasService entitasService;
 
     public List<Rapot> getAll() {
         return rapotRepository.findAll();
@@ -29,6 +35,10 @@ public class RapotService {
         if (rapot.getId() != null) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Id Rapot tidak ditemukan");
         }
+        MataPelajaran mataPelajaran = mataPelajaranService.getById(rapot.getMataPelajarans().getId());
+        Entitas entitas = entitasService.getById(rapot.getEntitas().getId());
+        rapot.setEntitas(entitas);
+        rapot.setMataPelajarans(mataPelajaran);
         return rapotRepository.save(rapot);
     }
 
@@ -38,6 +48,10 @@ public class RapotService {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Nama Rapot sama");
         }
         rapot.setId(id);
+        MataPelajaran mataPelajaran = mataPelajaranService.getById(rapot.getMataPelajarans().getId());
+        Entitas entitas = entitasService.getById(rapot.getEntitas().getId());
+        rapot.setEntitas(entitas);
+        rapot.setMataPelajarans(mataPelajaran);
         return rapotRepository.save(rapot);
     }
 
@@ -47,4 +61,9 @@ public class RapotService {
         return rapot;
     }
 
+    public EntitasRapot getEntitasRapotByid(Long id) {
+        Entitas entitas = entitasService.getById(id);
+
+        return Mapper.toEntitasRapot(entitas, getAll());
+    }
 }

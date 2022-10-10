@@ -40,6 +40,7 @@ public class MataPelajaran {
     @OneToMany(mappedBy = "mataPelajarans")
     private List<JadwalPelajaran> jadwalPelajaran;
 
+    @JsonProperty(access = Access.WRITE_ONLY)
     @OneToMany(mappedBy = "mataPelajarans")
     private List<Rapot> rapots;
 }

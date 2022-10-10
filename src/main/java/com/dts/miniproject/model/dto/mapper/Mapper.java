@@ -1,10 +1,16 @@
 package com.dts.miniproject.model.dto.mapper;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.dts.miniproject.model.Entitas;
 import com.dts.miniproject.model.JadwalPelajaran;
+import com.dts.miniproject.model.Rapot;
 import com.dts.miniproject.model.User;
 import com.dts.miniproject.model.dto.EntitasRequest;
 import com.dts.miniproject.model.dto.request.AddKelasMatpelToJadwal;
+import com.dts.miniproject.model.dto.response.EntitasRapot;
 
 public class Mapper {
 
@@ -19,7 +25,7 @@ public class Mapper {
         user.setUsername(entitasRequest.getUsername());
         user.setPassword(entitasRequest.getPassword());
         return new Entitas(null, entitasRequest.getNomorInduk(), entitasRequest.getNama(), entitasRequest.getAlamat(),
-                entitasRequest.getEmail(), entitasRequest.getNoHp(), null, user);
+                entitasRequest.getEmail(), entitasRequest.getNoHp(), null, user, null);
     }
 
     static public AddKelasMatpelToJadwal toAddKelasMatpelToJadwal(JadwalPelajaran jadwalPelajaran) {
@@ -31,5 +37,12 @@ public class Mapper {
     static public JadwalPelajaran toJadwalPelajaran(AddKelasMatpelToJadwal addKelasMatpelToJadwal) {
         return new JadwalPelajaran(null, addKelasMatpelToJadwal.getHari(), addKelasMatpelToJadwal.getJamMasuk(),
                 addKelasMatpelToJadwal.getJamKeluar(), null, null);
+    }
+
+    static public EntitasRapot toEntitasRapot(Entitas entitas, List<Rapot> rapot) {
+
+        return new EntitasRapot(entitas.getId(), entitas.getNomorInduk(), entitas.getNama(), entitas.getAlamat(),
+                entitas.getEmail(), entitas.getNoHp(),
+                rapot.stream().filter(rap -> rap.getEntitas().getId() == entitas.getId()).collect(Collectors.toList()));
     }
 }

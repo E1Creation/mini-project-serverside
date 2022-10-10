@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dts.miniproject.model.Entitas;
 import com.dts.miniproject.model.dto.EntitasRequest;
 import com.dts.miniproject.model.dto.mapper.Mapper;
+import com.dts.miniproject.model.dto.response.EntitasRapot;
 import com.dts.miniproject.service.EntitasService;
 
 import lombok.AllArgsConstructor;
@@ -45,6 +46,11 @@ public class EntitasController {
     @GetMapping("/role/{id}")
     public ResponseEntity<List<Entitas>> getEntitasByRoleId(@PathVariable Long id) {
         return new ResponseEntity<List<Entitas>>(entitasService.getAllByRole(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/rapot/{id}")
+    public ResponseEntity<EntitasRapot> getEntitasRapotByid(@PathVariable Long id) {
+        return new ResponseEntity<EntitasRapot>(entitasService.getEntitasRapotByid(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

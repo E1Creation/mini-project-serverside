@@ -12,6 +12,8 @@ import org.springframework.web.server.ResponseStatusException;
 import com.dts.miniproject.model.Entitas;
 import com.dts.miniproject.model.Role;
 import com.dts.miniproject.model.User;
+import com.dts.miniproject.model.dto.mapper.Mapper;
+import com.dts.miniproject.model.dto.response.EntitasRapot;
 import com.dts.miniproject.repository.EntitasRepository;
 
 import lombok.AllArgsConstructor;
@@ -82,6 +84,6 @@ public class EntitasService {
         if (entitasRepository.existsByNama(name)) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Nama Entitas sudah ada");
         }
-
     }
+
 }

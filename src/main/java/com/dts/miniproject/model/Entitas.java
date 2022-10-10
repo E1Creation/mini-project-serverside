@@ -48,4 +48,7 @@ public class Entitas {
     @PrimaryKeyJoinColumn
     private User user;
 
+    @JsonProperty(access = Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "entitas")
+    private List<Rapot> rapots;
 }

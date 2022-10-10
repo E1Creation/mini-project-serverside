@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dts.miniproject.model.Rapot;
+import com.dts.miniproject.model.dto.response.EntitasRapot;
 import com.dts.miniproject.service.RapotService;
 
 import lombok.AllArgsConstructor;
@@ -38,6 +39,11 @@ public class RapotController {
     @PostMapping
     public ResponseEntity<Rapot> create(@RequestBody Rapot rapot) {
         return new ResponseEntity<Rapot>(rapotService.create(rapot), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/entitas/{id}")
+    public ResponseEntity<EntitasRapot> getEntitasRapotByid(@PathVariable Long id) {
+        return new ResponseEntity<EntitasRapot>(rapotService.getEntitasRapotByid(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

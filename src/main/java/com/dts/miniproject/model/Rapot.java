@@ -14,6 +14,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,6 +39,10 @@ public class Rapot {
     // @ManyToOne
     // @JoinColumn(name = "siswa")
     // private Siswa siswa;
+    // @JsonProperty(access = Access.WRITE_ONLY)
+    @ManyToOne
+    @JoinColumn(name = "entitas")
+    private Entitas entitas;
 
     private int semester;
 
