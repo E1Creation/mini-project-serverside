@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dts.miniproject.model.Entitas;
 import com.dts.miniproject.model.dto.EntitasRequest;
 import com.dts.miniproject.model.dto.mapper.Mapper;
+import com.dts.miniproject.model.dto.response.CountEntitasMatpel;
 import com.dts.miniproject.model.dto.response.EntitasRapot;
 import com.dts.miniproject.service.EntitasService;
 
@@ -38,6 +39,11 @@ public class EntitasController {
 
     }
 
+    @GetMapping("/count")
+    public ResponseEntity<CountEntitasMatpel> getCountEntitasMatpel() {
+        return new ResponseEntity<CountEntitasMatpel>(entitasService.countEntitasMatpel(), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Entitas> create(@RequestBody EntitasRequest entitasRequest) {
         return new ResponseEntity<Entitas>(entitasService.create(Mapper.toEntitas(entitasRequest)), HttpStatus.CREATED);
@@ -46,11 +52,6 @@ public class EntitasController {
     @GetMapping("/role/{id}")
     public ResponseEntity<List<Entitas>> getEntitasByRoleId(@PathVariable Long id) {
         return new ResponseEntity<List<Entitas>>(entitasService.getAllByRole(id), HttpStatus.OK);
-    }
-
-    @GetMapping("/rapot/{id}")
-    public ResponseEntity<EntitasRapot> getEntitasRapotByid(@PathVariable Long id) {
-        return new ResponseEntity<EntitasRapot>(entitasService.getEntitasRapotByid(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

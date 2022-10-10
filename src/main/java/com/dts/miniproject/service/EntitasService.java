@@ -2,7 +2,6 @@ package com.dts.miniproject.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,9 +11,9 @@ import org.springframework.web.server.ResponseStatusException;
 import com.dts.miniproject.model.Entitas;
 import com.dts.miniproject.model.Role;
 import com.dts.miniproject.model.User;
-import com.dts.miniproject.model.dto.mapper.Mapper;
-import com.dts.miniproject.model.dto.response.EntitasRapot;
+import com.dts.miniproject.model.dto.response.CountEntitasMatpel;
 import com.dts.miniproject.repository.EntitasRepository;
+import com.dts.miniproject.repository.MataPelajaranRepository;
 
 import lombok.AllArgsConstructor;
 
@@ -23,6 +22,7 @@ import lombok.AllArgsConstructor;
 public class EntitasService {
     private EntitasRepository entitasRepository;
     private RoleService roleService;
+    private MataPelajaranRepository mataPelajaranRepository;
     private PasswordEncoder passwordEncoder;
 
     public List<Entitas> getAll() {
@@ -86,4 +86,12 @@ public class EntitasService {
         }
     }
 
+    public CountEntitasMatpel countEntitasMatpel() {
+        Integer jumlah_siswa = entitasRepository.countEntitas(1);
+        Integer jumlah_guru = entitasRepository.countEntitas(2);
+        Integer jumlah_mata_pelajaran = mataPelajaranRepository.countMatpel();
+
+        return new CountEntitasMatpel(jumlah_siswa, jumlah_guru, jumlah_mata_pelajaran);
+
+    }
 }

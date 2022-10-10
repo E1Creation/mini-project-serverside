@@ -11,7 +11,6 @@ import com.dts.miniproject.model.Entitas;
 import com.dts.miniproject.model.MataPelajaran;
 import com.dts.miniproject.model.Role;
 import com.dts.miniproject.model.dto.request.AddEntitasToMatpel;
-import com.dts.miniproject.repository.EntitasRepository;
 import com.dts.miniproject.repository.MataPelajaranRepository;
 
 import lombok.AllArgsConstructor;

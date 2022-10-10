@@ -2,6 +2,7 @@ package com.dts.miniproject.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -24,6 +25,11 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean(); // To change body of generated methods, choose Tools | Templates.
+    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // TODO Auto-generated method stub
@@ -42,6 +48,8 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // .antMatchers("/matapelajaran/**").hasRole("GURU")
                 // .antMatchers("/kelas/**").hasRole("SISWA")
                 .anyRequest().permitAll()
+                // .and()
+                // .formLogin()
                 .and()
                 .httpBasic();
     }
