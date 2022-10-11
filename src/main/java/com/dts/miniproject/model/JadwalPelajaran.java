@@ -32,7 +32,7 @@ public class JadwalPelajaran {
     @Column(name = "jam_keluar")
     private int jamKeluar;
 
-    @JsonProperty(access = Access.WRITE_ONLY)
+    // @JsonProperty(access = Access.WRITE_ONLY)
     @ManyToOne
     @JoinColumn(name = "mataPelajarans")
     private MataPelajaran mataPelajarans;

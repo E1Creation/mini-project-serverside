@@ -33,6 +33,7 @@ public class MataPelajaran {
     // @ManyToMany(mappedBy = "mataPelajarans")
     // private List<Siswa> siswas;
 
+    // @JsonProperty(access = Access.WRITE_ONLY)
     @ManyToMany(mappedBy = "mataPelajarans")
     private List<Entitas> entitas;
 
