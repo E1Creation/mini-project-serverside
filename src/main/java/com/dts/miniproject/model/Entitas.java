@@ -40,13 +40,22 @@ public class Entitas {
     private String noHp;
 
     @JsonProperty(access = Access.WRITE_ONLY)
-    @ManyToMany
-    @JoinTable(name = "entitas_matapelajaran", joinColumns = @JoinColumn(name = "entitas_id"), inverseJoinColumns = @JoinColumn(name = "matpel_id"))
+    @ManyToMany(mappedBy = "entitas")
     List<MataPelajaran> mataPelajarans;
 
     @OneToOne(mappedBy = "entitas", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private User user;
+
+    // @JsonProperty(access = Access.WRITE_ONLY)
+    @ManyToMany
+    @JoinTable(name = "self_entitas", joinColumns = @JoinColumn(name = "guru_id"), inverseJoinColumns = @JoinColumn(name = "siswa_id"))
+    List<Entitas> guru;
+
+    // @JsonProperty(access = Access.WRITE_ONLY)
+    @ManyToMany
+    @JoinTable(name = "self_entitas", joinColumns = @JoinColumn(name = "siswa_id"), inverseJoinColumns = @JoinColumn(name = "guru_id"))
+    List<Entitas> siswa;
 
     @JsonProperty(access = Access.WRITE_ONLY)
     @OneToMany(mappedBy = "entitas")

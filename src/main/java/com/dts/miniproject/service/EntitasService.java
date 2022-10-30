@@ -53,6 +53,10 @@ public class EntitasService {
         }
         validateByName(entitas.getNama());
         User user = entitas.getUser();
+
+        // if (entitas.getUser().getUsername() == null) {
+        // throw new ResponseStatusException(HttpStatus.CONFLICT, "username kosong");
+        // }
         user.setPassword(passwordEncoder.encode(entitas.getUser().getPassword()));
         user.setIsEnabled(Boolean.TRUE);
         user.setIsAccountLocked(Boolean.FALSE);

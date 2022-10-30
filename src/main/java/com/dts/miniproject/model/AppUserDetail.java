@@ -21,6 +21,10 @@ public class AppUserDetail implements UserDetails {
                 .collect(Collectors.toList());
     }
 
+    public Long id() {
+        return user.getId();
+    }
+
     @Override
     public String getPassword() {
         // TODO Auto-generated method stub
