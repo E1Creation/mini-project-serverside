@@ -3,6 +3,8 @@ package com.dts.miniproject.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,8 @@ import com.dts.miniproject.model.Entitas;
 import com.dts.miniproject.model.Role;
 import com.dts.miniproject.model.User;
 import com.dts.miniproject.model.dto.response.CountEntitasMatpel;
+import com.dts.miniproject.model.dto.response.EntitasRapot;
+import com.dts.miniproject.model.dto.response.EntitasUser;
 import com.dts.miniproject.repository.EntitasRepository;
 import com.dts.miniproject.repository.MataPelajaranRepository;
 
@@ -24,6 +28,12 @@ public class EntitasService {
     private RoleService roleService;
     private MataPelajaranRepository mataPelajaranRepository;
     private PasswordEncoder passwordEncoder;
+    private UserService userService;
+
+    // @Bean
+    // public void setup() {
+    // this.mapper = new ModelMapper();
+    // }
 
     public List<Entitas> getAll() {
         return entitasRepository.findAll();
@@ -98,4 +108,21 @@ public class EntitasService {
         return new CountEntitasMatpel(jumlah_siswa, jumlah_guru, jumlah_mata_pelajaran);
 
     }
+
+    public EntitasRapot mapperEntitasRapotFromEntitas(Long id) {
+        ModelMapper mapper = new ModelMapper();
+        Entitas entitas = getById(id);
+        EntitasRapot entitasRapot = mapper.map(entitas, EntitasRapot.class);
+        return entitasRapot;
+    }
+
+    public EntitasUser mapperEntitasUser(Long id) {
+        ModelMapper mapper = new ModelMapper();
+        Entitas entitas = getById(id);
+        User user = userService.getById(id);
+        EntitasUser entitasUser = mapper.map(entitas, EntitasUser.class);
+        mapper.map(user, entitasUser);
+        return entitasUser;
+    }
+
 }

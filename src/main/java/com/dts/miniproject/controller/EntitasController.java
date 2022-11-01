@@ -18,6 +18,7 @@ import com.dts.miniproject.model.dto.EntitasRequest;
 import com.dts.miniproject.model.dto.mapper.Mapper;
 import com.dts.miniproject.model.dto.response.CountEntitasMatpel;
 import com.dts.miniproject.model.dto.response.EntitasRapot;
+import com.dts.miniproject.model.dto.response.EntitasUser;
 import com.dts.miniproject.service.EntitasService;
 
 import lombok.AllArgsConstructor;
@@ -64,4 +65,13 @@ public class EntitasController {
         return new ResponseEntity<Entitas>(entitasService.delete(id), HttpStatus.OK);
     }
 
+    @GetMapping("/mapper/{id}")
+    public ResponseEntity<EntitasRapot> entitasMapper(@PathVariable Long id) {
+        return new ResponseEntity<EntitasRapot>(entitasService.mapperEntitasRapotFromEntitas(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/mapper2/{id}")
+    public ResponseEntity<EntitasUser> entitasUserMapper(@PathVariable Long id) {
+        return new ResponseEntity<EntitasUser>(entitasService.mapperEntitasUser(id), HttpStatus.OK);
+    }
 }
