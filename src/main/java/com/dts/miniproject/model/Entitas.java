@@ -48,14 +48,16 @@ public class Entitas {
     private User user;
 
     // @JsonProperty(access = Access.WRITE_ONLY)
-    @ManyToMany
-    @JoinTable(name = "self_entitas", joinColumns = @JoinColumn(name = "guru_id"), inverseJoinColumns = @JoinColumn(name = "siswa_id"))
-    List<Entitas> guru;
+    // @ManyToMany
+    // @JoinTable(name = "self_entitas", joinColumns = @JoinColumn(name =
+    // "guru_id"), inverseJoinColumns = @JoinColumn(name = "siswa_id"))
+    // List<Entitas> guru;
 
     // @JsonProperty(access = Access.WRITE_ONLY)
-    @ManyToMany
-    @JoinTable(name = "self_entitas", joinColumns = @JoinColumn(name = "siswa_id"), inverseJoinColumns = @JoinColumn(name = "guru_id"))
-    List<Entitas> siswa;
+    // @ManyToMany
+    // @JoinTable(name = "self_entitas", joinColumns = @JoinColumn(name =
+    // "siswa_id"), inverseJoinColumns = @JoinColumn(name = "guru_id"))
+    // List<Entitas> siswa;
 
     @JsonProperty(access = Access.WRITE_ONLY)
     @OneToMany(mappedBy = "entitas")

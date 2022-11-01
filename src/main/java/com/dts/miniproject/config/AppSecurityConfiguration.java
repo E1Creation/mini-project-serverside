@@ -9,7 +9,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.dts.miniproject.filter.CustomAuthorizationFilter;
 import com.dts.miniproject.service.AppUserDetailService;
 
 import lombok.AllArgsConstructor;
@@ -52,6 +54,9 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // .formLogin()
                 .and()
                 .httpBasic();
+
+        http.addFilterBefore(new CustomAuthorizationFilter(),
+                UsernamePasswordAuthenticationFilter.class);
     }
 
 }
