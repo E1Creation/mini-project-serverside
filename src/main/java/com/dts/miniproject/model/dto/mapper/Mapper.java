@@ -24,7 +24,7 @@ public class Mapper {
         User user = new User();
         user.setUsername(entitasRequest.getUsername());
         user.setPassword(entitasRequest.getPassword());
-        return new Entitas(null, entitasRequest.getNomorInduk(), entitasRequest.getNama(), entitasRequest.getAlamat(),
+        return new Entitas(entitasRequest.getNomorInduk(), entitasRequest.getNama(), entitasRequest.getAlamat(),
                 entitasRequest.getEmail(), entitasRequest.getNoHp(), null, user, null);
     }
 

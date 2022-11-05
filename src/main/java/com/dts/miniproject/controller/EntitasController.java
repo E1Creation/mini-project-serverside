@@ -50,6 +50,11 @@ public class EntitasController {
         return new ResponseEntity<Entitas>(entitasService.create(Mapper.toEntitas(entitasRequest)), HttpStatus.CREATED);
     }
 
+    @PostMapping("/registrasi")
+    public ResponseEntity<Entitas> registrasi(@RequestBody EntitasRequest entitasRequest) {
+        return new ResponseEntity<Entitas>(entitasService.create(Mapper.toEntitas(entitasRequest)), HttpStatus.CREATED);
+    }
+
     @GetMapping("/role/{id}")
     public ResponseEntity<List<Entitas>> getEntitasByRoleId(@PathVariable Long id) {
         return new ResponseEntity<List<Entitas>>(entitasService.getAllByRole(id), HttpStatus.OK);
