@@ -8,13 +8,14 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.dts.miniproject.model.Kelas;
 import com.dts.miniproject.repository.KelasRepository;
+import com.dts.miniproject.repository.generic.GenericRepository;
 
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
 public class KelasService {
-    private KelasRepository kelasRepository;
+    private GenericRepository<Kelas> kelasRepository;
 
     public List<Kelas> getAll() {
         return kelasRepository.findAll();

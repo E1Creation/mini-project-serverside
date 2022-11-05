@@ -5,9 +5,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.dts.miniproject.model.MataPelajaran;
+import com.dts.miniproject.repository.generic.GenericRepository;
 
 @Repository
-public interface MataPelajaranRepository extends JpaRepository<MataPelajaran, Long> {
+public interface MataPelajaranRepository extends GenericRepository<MataPelajaran> {
     Boolean existsByNama(String nama);
 
     @Query(value = "SELECT COUNT(nama) from mata_pelajaran", nativeQuery = true)

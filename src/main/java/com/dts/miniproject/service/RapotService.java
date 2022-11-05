@@ -11,14 +11,14 @@ import com.dts.miniproject.model.MataPelajaran;
 import com.dts.miniproject.model.Rapot;
 import com.dts.miniproject.model.dto.mapper.Mapper;
 import com.dts.miniproject.model.dto.response.EntitasRapot;
-import com.dts.miniproject.repository.RapotRepository;
+import com.dts.miniproject.repository.generic.GenericRepository;
 
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
 public class RapotService {
-    private RapotRepository rapotRepository;
+    private GenericRepository<Rapot> rapotRepository;
     private MataPelajaranService mataPelajaranService;
     private EntitasService entitasService;
 
