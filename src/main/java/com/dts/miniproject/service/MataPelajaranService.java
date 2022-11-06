@@ -12,24 +12,26 @@ import com.dts.miniproject.model.MataPelajaran;
 import com.dts.miniproject.model.Role;
 import com.dts.miniproject.model.dto.request.AddEntitasToMatpel;
 import com.dts.miniproject.repository.MataPelajaranRepository;
+import com.dts.miniproject.service.generic.GenericService;
 
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class MataPelajaranService {
+public class MataPelajaranService extends GenericService<MataPelajaran> {
     private MataPelajaranRepository matapelajaranRepository;
     private EntitasService entitasService;
 
-    public List<MataPelajaran> getAll() {
-        return matapelajaranRepository.findAll();
-    }
+    // public List<MataPelajaran> getAll() {
+    // return matapelajaranRepository.findAll();
+    // }
 
-    public MataPelajaran getById(Long id) {
-        return matapelajaranRepository.findById(id)
-                .orElseThrow(
-                        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Data MataPelajaran tidak ditemukan"));
-    }
+    // public MataPelajaran getById(Long id) {
+    // return matapelajaranRepository.findById(id)
+    // .orElseThrow(
+    // () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Data MataPelajaran
+    // tidak ditemukan"));
+    // }
 
     public MataPelajaran create(MataPelajaran matapelajaran) {
         if (matapelajaran.getId() != null) {
@@ -48,11 +50,11 @@ public class MataPelajaranService {
         return matapelajaranRepository.save(matapelajaran);
     }
 
-    public MataPelajaran delete(Long id) {
-        MataPelajaran matapelajaran = getById(id);
-        matapelajaranRepository.delete(matapelajaran);
-        return matapelajaran;
-    }
+    // public MataPelajaran delete(Long id) {
+    // MataPelajaran matapelajaran = getById(id);
+    // matapelajaranRepository.delete(matapelajaran);
+    // return matapelajaran;
+    // }
 
     public void validateByName(String name) {
         if (matapelajaranRepository.existsByNama(name)) {

@@ -12,12 +12,13 @@ import com.dts.miniproject.model.MataPelajaran;
 import com.dts.miniproject.model.dto.request.AddKelasMatpelToJadwal;
 import com.dts.miniproject.repository.JadwalPelajaranRepository;
 import com.dts.miniproject.repository.generic.GenericRepository;
+import com.dts.miniproject.service.generic.GenericService;
 
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class JadwalPelajaranService {
+public class JadwalPelajaranService extends GenericService<JadwalPelajaran> {
     private GenericRepository<JadwalPelajaran> repository;
     private KelasService kelasService;
     private MataPelajaranService mataPelajaranService;

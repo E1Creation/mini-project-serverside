@@ -10,19 +10,20 @@ import com.dts.miniproject.model.Role;
 import com.dts.miniproject.model.User;
 import com.dts.miniproject.model.dto.request.AddRoleUserRequest;
 import com.dts.miniproject.repository.UserRepository;
+import com.dts.miniproject.service.generic.GenericService;
 
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class UserService {
+public class UserService extends GenericService<User> {
 
     private UserRepository repository;
     private RoleService roleService;
 
-    public List<User> getAll() {
-        return repository.findAll();
-    }
+    // public List<User> getAll() {
+    // return repository.findAll();
+    // }
 
     public User insert(User user) {
         if (user.getId() != null) {
@@ -32,14 +33,16 @@ public class UserService {
         return repository.save(user);
     }
 
-    public User getById(Long id) {
-        // TODO Auto-generated method stub
-        // if (!repository.findById(id).isPresent()) {
-        // throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User Not Found!");
-        // }
-        return repository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User Not Found!"));
-    }
+    // public User getById(Long id) {
+    // // TODO Auto-generated method stub
+    // // if (!repository.findById(id).isPresent()) {
+    // // throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User Not
+    // Found!");
+    // // }
+    // return repository.findById(id)
+    // .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User
+    // Not Found!"));
+    // }
 
     public User update(Long id, User user) {
         User oldUser = getById(id);
@@ -50,12 +53,12 @@ public class UserService {
         return repository.save(user);
     }
 
-    public User delete(Long id) {
-        // TODO Auto-generated method stub
-        User user = getById(id);
-        repository.deleteById(id);
-        return user;
-    }
+    // public User delete(Long id) {
+    // // TODO Auto-generated method stub
+    // User user = getById(id);
+    // repository.deleteById(id);
+    // return user;
+    // }
 
     public void checkByName(String name) {
         getAll().forEach((reg) -> {

@@ -12,24 +12,26 @@ import com.dts.miniproject.model.Rapot;
 import com.dts.miniproject.model.dto.mapper.Mapper;
 import com.dts.miniproject.model.dto.response.EntitasRapot;
 import com.dts.miniproject.repository.generic.GenericRepository;
+import com.dts.miniproject.service.generic.GenericService;
 
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class RapotService {
+public class RapotService extends GenericService<Rapot> {
     private GenericRepository<Rapot> rapotRepository;
     private MataPelajaranService mataPelajaranService;
     private EntitasService entitasService;
 
-    public List<Rapot> getAll() {
-        return rapotRepository.findAll();
-    }
+    // public List<Rapot> getAll() {
+    // return rapotRepository.findAll();
+    // }
 
-    public Rapot getById(Long id) {
-        return rapotRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Data Rapot tidak ditemukan"));
-    }
+    // public Rapot getById(Long id) {
+    // return rapotRepository.findById(id)
+    // .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Data
+    // Rapot tidak ditemukan"));
+    // }
 
     public Rapot create(Rapot rapot) {
         if (rapot.getId() != null) {
@@ -55,11 +57,11 @@ public class RapotService {
         return rapotRepository.save(rapot);
     }
 
-    public Rapot delete(Long id) {
-        Rapot rapot = getById(id);
-        rapotRepository.delete(rapot);
-        return rapot;
-    }
+    // public Rapot delete(Long id) {
+    // Rapot rapot = getById(id);
+    // rapotRepository.delete(rapot);
+    // return rapot;
+    // }
 
     public EntitasRapot getEntitasRapotByid(Long id) {
         Entitas entitas = entitasService.getById(id);

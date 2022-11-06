@@ -18,6 +18,7 @@ import com.dts.miniproject.model.dto.request.LoginRequest;
 import com.dts.miniproject.model.dto.response.JwTTokenResponse;
 import com.dts.miniproject.model.dto.response.LoginResponse;
 import com.dts.miniproject.repository.UserRepository;
+import com.dts.miniproject.service.generic.GenericService;
 
 import lombok.AllArgsConstructor;
 

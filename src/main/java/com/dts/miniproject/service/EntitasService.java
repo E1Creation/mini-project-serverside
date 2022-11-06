@@ -18,12 +18,13 @@ import com.dts.miniproject.model.dto.response.EntitasRapot;
 import com.dts.miniproject.model.dto.response.EntitasUser;
 import com.dts.miniproject.repository.EntitasRepository;
 import com.dts.miniproject.repository.MataPelajaranRepository;
+import com.dts.miniproject.service.generic.GenericService;
 
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class EntitasService {
+public class EntitasService extends GenericService<Entitas> {
     private EntitasRepository entitasRepository;
     private RoleService roleService;
     private MataPelajaranRepository mataPelajaranRepository;
@@ -35,14 +36,15 @@ public class EntitasService {
     // this.mapper = new ModelMapper();
     // }
 
-    public List<Entitas> getAll() {
-        return entitasRepository.findAll();
-    }
+    // public List<Entitas> getAll() {
+    // return entitasRepository.findAll();
+    // }
 
-    public Entitas getById(Long id) {
-        return entitasRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Data Entitas tidak ditemukan"));
-    }
+    // public Entitas getById(Long id) {
+    // return entitasRepository.findById(id)
+    // .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Data
+    // Entitas tidak ditemukan"));
+    // }
 
     public List<Entitas> getAllByRole(Long id) {
         List<Entitas> newEntitas = new ArrayList<>();
